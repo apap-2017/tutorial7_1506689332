@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="fragments/fragment :: header"></head>
+    <body>
+        <h1>All Courses</h1>
+        <table class="table table-hover" id="studentTable">
+			<thead>
+				<tr>
+					<th>No</th>
+					<th>ID Course</th>
+					<th>Nama</th>
+					<th>Credits</th>
+				</tr>
+			</thead>
+			<tbody th:each="course,iterationStatus: ${courses}" th:class="${iterationStatus.odd}?'odd'">
+				<tr>
+					<td th:text="${iterationStatus.count}">No</td>
+					<td th:text="${course.idCourse}">Course ID</td>
+					<td th:text="${course.name}">Course Name</td>
+					<td th:text="${course.credits} + ' SKS'">Course Credits</td>
+				</tr>
+			</tbody>
+		</table>
+       	
+       	<script
+		  src="https://code.jquery.com/jquery-3.2.1.js"
+		  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+		  crossorigin="anonymous"></script>
+       	<script type="text/javascript" src="/js/jquery.dataTables.min.js"></script>
+       	<script type="text/javascript" src="/js/data-table.js"></script>
+    </body>
+</html>
