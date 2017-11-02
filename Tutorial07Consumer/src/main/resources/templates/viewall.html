@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="fragments/fragment :: header"></head>
+    <body>
+        <h1>All Students</h1>
+        <table class="table table-hover" id="studentTable">
+			<thead>
+				<tr>
+					<th>No</th>
+					<th>NPM</th>
+					<th>Nama</th>
+					<th>GPA</th>
+					<th>Cum laude</th>
+					<th>Delete</th>
+					<th>Update</th>
+				</tr>
+			</thead>
+			<tbody th:each="student,iterationStatus: ${students}" th:class="${iterationStatus.odd}?'odd'">
+				<tr>
+					<td th:text="${iterationStatus.count}">No</td>
+					<td th:text="${student.npm}">Student NPM</td>
+					<td th:text="${student.name}">Student Name</td>
+					<td th:text="${student.gpa}">Student GPA</td>
+					<td th:if="${student.gpa>=3.49}">Cum Laude!</td>
+	       			<td th:unless="${student.gpa>=3.49}">Sangat Memuaskan!</td>
+	       			<td><a th:href="'/student/delete/' + ${student.npm}" > Delete</a></td>
+	       			<td><a th:href="'/student/update/' + ${student.npm}" > Update</a></td>
+				</tr>
+			</tbody>
+		</table>
+		
+    	<!--  <div th:each="student,iterationStatus: ${students}" th:class="${iterationStatus.odd}?'odd'">
+            <h3 th:text="'No. ' + ${iterationStatus.count}">No. 1</h3>
+	       	<h3 th:text="'NPM = ' + ${student.npm}">Student NPM</h3>
+	       	<h3 th:text="'Name = ' + ${student.name}">Student Name</h3>
+	       	<h3 th:text="'GPA = ' + ${student.gpa}">Student GPA</h3>
+	       	
+	       	<h3 th:text="${student.gpa} >= 3.49 ? 'Cum Laude!' : 'Sangat Memuaskan!'">IPK status</h3>
+	       	
+	       	<h3 th:if="${student.gpa>=3.49}">Cum Laude!</h3>
+	       	<h3 th:unless="${student.gpa>=3.49}">Sangat Memuaskan!</h3>
+	       	<a th:href="'/student/delete/' + ${student.npm}" > Delete Data</a><br/>
+	       	<a th:href="'/student/update/' + ${student.npm}" > Update Data</a><br/>
+	       	<h3>Kuliah yang diambil</h3>
+	       	<ul th:each="course,iterationStatus: ${student.courses}">
+	       		<li th:text="${course.name} + '-' + ${course.credits} + ' sks'">
+	       			Nama kuliah-X SKS
+	       		</li>
+	       	</ul>
+	       	<hr/>
+       	</div> -->
+       	
+       	<script
+		  src="https://code.jquery.com/jquery-3.2.1.js"
+		  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+		  crossorigin="anonymous"></script>
+       	<script type="text/javascript" src="/js/jquery.dataTables.min.js"></script>
+       	<script type="text/javascript" src="/js/data-table.js"></script>
+    </body>
+</html>
